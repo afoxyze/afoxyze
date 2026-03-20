@@ -1,9 +1,20 @@
+import Hero from './components/Hero'
+import Skills from './components/Skills'
+import Projects from './components/Projects'
+import Experience from './components/Experience'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+
 function App() {
   return (
     <div className="min-h-screen bg-dark text-text-primary">
       <main className="max-w-3xl mx-auto px-6">
-        <p className="pt-20 text-2xl font-semibold">afoxyze.dev</p>
-        <p className="mt-2 text-text-secondary">Layout ready</p>
+        <Hero />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+        <Footer />
       </main>
     </div>
   )
