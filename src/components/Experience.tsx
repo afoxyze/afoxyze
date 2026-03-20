@@ -1,15 +1,22 @@
+import { useFadeIn } from '../hooks/useFadeIn'
+
 export default function Experience() {
+  const ref = useFadeIn()
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" ref={ref} className="fade-in py-20">
       <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase mb-3">
         Experience
       </p>
-      <h2 className="text-3xl font-bold tracking-tight mb-8">
+      <h2 className="text-3xl font-bold tracking-tight mb-4">
         Where I've Worked
       </h2>
-      <div className="border border-dashed border-dark-border rounded-xl p-12 text-center">
-        <p className="font-mono text-sm text-text-muted tracking-wide">
-          Coming soon
+      <p className="text-text-secondary mb-8 leading-relaxed">
+        Growing my experience one project at a time.
+      </p>
+      <div className="bg-dark-card border border-dark-border rounded-xl p-8 flex items-center gap-4">
+        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+        <p className="font-mono text-sm text-text-muted">
+          Open to opportunities
         </p>
       </div>
     </section>

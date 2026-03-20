@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:anthropic.skilljar.com)",
+      "Bash(npm --version)",
+      "Bash(npm create:*)",
+      "Bash(printf \"y\\\\n\")",
+      "Bash(npx create-vite@latest . --template react-ts)",
+      "Bash(mkdir -p \"C:/Users/agung/project-agung/_vite_temp\")",
+      "Read(//c/Users/agung/project-agung/**)",
+      "Bash(cp:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 15 npm run dev)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:x.com)"
+    ]
+  }
+}
