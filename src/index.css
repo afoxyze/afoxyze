@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-dark: #0a0a0f;
+  --color-dark-card: #111118;
+  --color-dark-border: #1c1c28;
+  --color-accent: #00d4ff;
+  --color-text-primary: #e8e8ed;
+  --color-text-secondary: #7a7a8e;
+  --color-text-muted: #4a4a5e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-dark);
+  color: var(--color-text-primary);
+}
