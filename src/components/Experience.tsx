@@ -8,10 +8,10 @@ export default function Experience() {
         Experience
       </p>
       <h2 className="text-3xl font-bold tracking-tight mb-4">
-        Where I've Worked
+        Where I've Been
       </h2>
       <p className="text-text-secondary mb-8 leading-relaxed">
-        Growing my experience one project at a time.
+        Started from admin, now we're here.
       </p>
       <div className="bg-dark-card border border-dark-border rounded-xl p-8 flex items-center gap-4">
         <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />

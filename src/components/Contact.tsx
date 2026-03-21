@@ -5,7 +5,7 @@ const contacts = [
   {
     label: "Email",
     value: "agung.febryanto3@gmail.com",
-    href: "mailto:agung.febryanto3@email.com",
+    href: "mailto:agung.febryanto3@gmail.com",
     icon: <EmailIcon />,
   },
   {
@@ -29,21 +29,20 @@ export default function Contact() {
       <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase mb-3">
         Contact
       </p>
-      <h2 className="text-3xl font-bold tracking-tight mb-3">Get in Touch</h2>
       <p className="text-text-secondary mb-8 leading-relaxed">
-        Interested in working together? Let's connect.
+        Got something in mind? Hit me up.
       </p>
-      <div className="flex flex-col gap-3 max-w-sm">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {contacts.map((c) => (
           <a
             key={c.label}
             href={c.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-glow flex items-center gap-4 px-5 py-4 bg-dark-card border border-dark-border rounded-xl text-text-secondary hover:border-accent hover:text-accent transition-all duration-300"
+            className="contact-glow flex flex-col items-center gap-3 p-6 bg-dark-card border border-dark-border rounded-xl text-text-secondary hover:border-accent hover:text-accent transition-all duration-300"
           >
             {c.icon}
-            <span className="text-sm">{c.value}</span>
+            <span className="text-sm font-semibold">{c.label}</span>
           </a>
         ))}
       </div>

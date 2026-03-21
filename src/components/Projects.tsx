@@ -8,10 +8,10 @@ export default function Projects() {
         Projects
       </p>
       <h2 className="text-3xl font-bold tracking-tight mb-4">
-        What I've Built
+        Stuff I've Made
       </h2>
       <p className="text-text-secondary mb-8 leading-relaxed">
-        Currently working on new projects. Stay tuned.
+        Working on something. Check back later.
       </p>
       <div className="bg-dark-card border border-dark-border rounded-xl p-8 flex items-center gap-4">
         <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
