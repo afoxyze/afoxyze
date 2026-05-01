@@ -123,7 +123,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
       onWheel={handleWheel}
     >
       {/* THE SECRET ABOUT LAYER (Z-Index 0 or 20 when open) */}
-      <div className={`absolute inset-0 flex flex-col items-center justify-start pt-[15vh] lg:pt-[20vh] px-6 lg:px-12 text-bg dark:text-ink transition-all duration-500 scrollbar-hide ${isAboutOpen ? 'z-20 opacity-100 pointer-events-auto overflow-y-auto' : 'z-0 opacity-0 pointer-events-none'}`}>
+      <div className={`absolute inset-0 flex flex-col items-center justify-start pt-4 lg:pt-6 px-6 lg:px-12 text-bg dark:text-ink transition-all duration-500 scrollbar-hide ${isAboutOpen ? 'z-20 opacity-100 pointer-events-auto overflow-y-auto' : 'z-0 opacity-0 pointer-events-none'}`}>
          {/* Grainy Gradient Background */}
          <div className="absolute inset-0 bg-noise animate-grainy-gradient opacity-10 dark:opacity-20 z-[-1]"></div>
          
@@ -139,7 +139,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                  {isAboutOpen ? <StaggeredText text="Bridging the gap between brutalist editorial design and fluid software engineering. Everything is built with extreme attention to detail and zero compromises." delay={0.5} /> : "Bridging the gap between brutalist editorial design and fluid software engineering. Everything is built with extreme attention to detail and zero compromises."}
                </p>
             </div>
-            <div className="flex items-center gap-6 mt-2 pt-6 border-t border-line/20 dark:border-ink/20 text-xs tracking-widest uppercase font-bold text-bg dark:text-ink">
+            <div className="flex items-center gap-6 -mt-2 pt-6 border-t border-line/20 dark:border-ink/20 text-xs tracking-widest uppercase font-bold text-bg dark:text-ink">
                <a href="https://github.com/afoxyze" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">GitHub</a>
                <a href="https://www.linkedin.com/in/afoxyze/" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">LinkedIn</a>
                <a href="mailto:agung.febryanto3@gmail.com" className="hover:opacity-60 transition-opacity">Email</a>
@@ -168,10 +168,15 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
         dragElastic={0.2}
         onDragEnd={(_, info) => {
           if (isAboutOpen) return;
-          if (info.offset.x > 100) go(idx - 1);
-          else if (info.offset.x < -100) go(idx + 1);
+          const swipeThreshold = 50;
+          const isFlick = Math.abs(info.velocity.x) > 500;
+          if (info.offset.x > swipeThreshold || (isFlick && info.velocity.x > 0)) {
+            go(idx - 1);
+          } else if (info.offset.x < -swipeThreshold || (isFlick && info.velocity.x < 0)) {
+            go(idx + 1);
+          }
         }}
-        className={`relative z-10 flex-1 flex flex-col min-h-0 bg-bg dark:bg-dark-bg shadow-[0_0_50px_rgba(0,0,0,0.3)] origin-top ${isAboutOpen ? 'cursor-pointer' : ''}`}
+        className={`relative z-10 flex-1 flex flex-col min-h-0 bg-bg dark:bg-dark-bg shadow-[0_0_50px_rgba(0,0,0,0.3)] origin-top transform-gpu will-change-transform ${isAboutOpen ? 'cursor-pointer' : ''}`}
       >
         <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-y-auto lg:overflow-hidden scrollbar-hide ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
@@ -285,7 +290,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                           initial={{ clipPath: "inset(100% 0 0 0)" }}
                           animate={{ clipPath: "inset(0% 0 0 0)" }}
                           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                          className="absolute inset-0 flex items-center justify-center"
+                          className="absolute inset-0 flex items-center justify-center transform-gpu"
                         >
                             <motion.img 
                               key={currentProject.image}
@@ -294,7 +299,9 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                               src={currentProject.image}
                               alt={`${currentProject.title} screenshot`}
-                              className="w-full h-full object-cover transition-all dark:brightness-90 dark:saturate-90"
+                              className="w-full h-full object-cover transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
+                              fetchPriority="high"
+                              loading="eager"
                             />
                         </motion.div>
                       </div>
@@ -308,9 +315,11 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                             rel="noopener noreferrer" 
                             className="group relative flex items-center gap-3 bg-ink dark:bg-bg text-bg dark:text-ink px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all hover:scale-105 border border-line/20 dark:border-dark-line/20 shadow-xl"
                           >
-                            <div className="relative h-[1.2em] overflow-hidden flex flex-col">
-                              <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">Visit</span>
-                              <span className="absolute top-full left-0 inline-block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">Launch</span>
+                            <div className="relative h-[1.2em] overflow-hidden">
+                              <div className="flex flex-col items-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2">
+                                <span className="h-[1.2em] flex items-center justify-center">Visit</span>
+                                <span className="h-[1.2em] flex items-center justify-center">Launch</span>
+                              </div>
                             </div>
                             <svg className="w-3 h-3 transition-transform duration-500 group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
                           </a>
@@ -357,7 +366,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                  className="prev-btn hidden lg:flex items-center gap-[14px] py-2 pl-[14px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:-translate-x-[2px] group text-right disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0 ml-auto"
               >
                  <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:-translate-x-[3px] rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
-                 <div className="nu-stack flex flex-col gap-0.5 items-end">
+                   <div className="nu-stack flex flex-col gap-0.5 items-end">
                    <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted dark:text-dark-muted font-medium">Previous</span>
                    <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink">
                      {idx === 0 ? "—" : projects[idx - 1].title}
@@ -378,7 +387,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                      {idx === projects.length - 1 ? "—" : projects[idx + 1].title}
                    </span>
                  </div>
-                 <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:translate-x-[3px] ml-auto lg:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
+                 <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:translate-x-[3px] ml-auto lg:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
               </button>
            </Magnetic>
         </div>
