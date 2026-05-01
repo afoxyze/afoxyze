@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StatusBar from '../components/StatusBar.astro';
+import PortfolioSlider from '../components/PortfolioSlider';
+import { PROJECTS } from '../data/projects';
+---
+
+<Layout>
+  <div id="top-progress" class="fixed top-0 left-0 right-0 h-[1px] bg-transparent z-20 pointer-events-none">
+    <div id="progress-bar" class="absolute left-0 top-0 bottom-0 bg-ink transition-all duration-800 ease-[cubic-bezier(.22,1,.36,1)]" style="width: 33.33%"></div>
+  </div>
+
+  <StatusBar />
+
+  <main class="flex-1 flex flex-col overflow-hidden">
+    <PortfolioSlider client:load projects={PROJECTS} />
+  </main>
+
+  <script>
+    // Focus the main element on mount for immediate keyboard navigation
+    document.addEventListener('DOMContentLoaded', () => {
+      const main = document.querySelector('main');
+      if (main) main.focus();
+    });
+  </script>
+</Layout>

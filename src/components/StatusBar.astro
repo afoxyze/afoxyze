@@ -1,0 +1,37 @@
+<div class="status-bar flex items-center justify-between px-6 lg:px-12 pt-7 pb-5 text-[11px] text-muted dark:text-dark-muted tracking-[0.16em] uppercase tabular-nums transition-colors">
+  <div class="flex items-center gap-[18px]">
+    <span class="live-indicator" id="live-time">—</span>
+    <span class="text-muted-2 dark:text-dark-muted-2">·</span>
+    <span>Jakarta, ID</span>
+  </div>
+  <div class="flex items-center gap-[18px]">
+    <button class="theme-toggle relative w-[46px] h-[24px] rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-card cursor-pointer p-0 transition-all duration-300 group hover:border-ink dark:hover:border-dark-ink" id="theme-toggle" aria-label="Toggle theme">
+      <span class="tt-thumb absolute top-[1px] left-[1px] w-[18px] h-[18px] rounded-full bg-ink dark:bg-white transition-transform duration-350 ease-[cubic-bezier(.2,.7,.2,1)] translate-x-0 dark:translate-x-[24px] group-hover:scale-105"></span>
+    </button>
+  </div>
+</div>
+
+<script>
+  function updateTime(){
+    try{
+      const t = new Date().toLocaleTimeString("en-GB",{
+        timeZone:"Asia/Jakarta", hour:"2-digit", minute:"2-digit"
+      });
+      const el = document.getElementById("live-time");
+      if (el) el.textContent = t + " WIB";
+    }catch(e){ 
+      const el = document.getElementById("live-time");
+      if (el) el.textContent="—"; 
+    }
+  }
+  updateTime();
+  setInterval(updateTime, 30000);
+
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle?.addEventListener("click", () => {
+    const body = document.body;
+    const cur = body.getAttribute("data-theme") || "light";
+    const next = cur === "light" ? "dark" : "light";
+    body.setAttribute("data-theme", next);
+  });
+</script>
