@@ -4,6 +4,7 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "DM Serif Display", serif;
 
   /* Light Theme Colors (Reference) */
   --color-bg: #ffffff;
@@ -31,20 +32,48 @@
     @apply antialiased tracking-tight leading-relaxed;
     font-feature-settings: "ss01", "cv11";
   }
+
+  /* Universal Premium Transition for Theme-related properties */
+  *, *::before, *::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer utilities {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .animate-grainy-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(var(--ink-rgb), 0.05), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(var(--ink-rgb), 0.03), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(var(--ink-rgb), 0.03), transparent 40%);
+    background-size: 200% 200%;
+    animation: grainy-gradient 15s ease infinite;
+  }
+}
+
+@keyframes grainy-gradient {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+@keyframes preloader-out {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+.preloader-hidden {
+  animation: preloader-out 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
 }
 
 /* Common shared component animations and styles */
-[data-density="airy"] .hero-section { gap: 6rem; padding: 2rem 5rem 3.5rem; }
-[data-density="airy"] .status-bar { padding: 2rem 5rem 1.5rem; }
-[data-density="airy"] .rail-bar { padding: 2rem 5rem 2.5rem; }
-
-[data-density="tight"] .hero-section { gap: 2.5rem; padding: 1rem 2rem 1.5rem; }
-[data-density="tight"] .status-bar { padding: 1.125rem 2rem 0.75rem; }
-[data-density="tight"] .rail-bar { padding: 1rem 2rem 1.5rem; }
-
-[data-numweight="thin"] .index-num { font-weight: 200; }
-[data-numweight="bold"] .index-num { font-weight: 600; }
-
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
@@ -60,8 +89,4 @@
   margin-right: 7px;
   transform: translateY(-1px);
   animation: pulse 2.4s ease-in-out infinite;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
 }

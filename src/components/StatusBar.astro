@@ -5,6 +5,13 @@
     <span>Jakarta, ID</span>
   </div>
   <div class="flex items-center gap-[18px]">
+    <!-- Native About/Close button that triggers a global event -->
+    <button 
+      id="about-trigger"
+      class="flex items-center justify-center px-4 py-1.5 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-card text-[9px] tracking-[0.2em] uppercase font-bold text-ink dark:text-dark-ink hover:border-ink dark:hover:border-dark-ink transition-colors cursor-pointer"
+    >
+      About
+    </button>
     <button class="theme-toggle relative w-[46px] h-[24px] rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-card cursor-pointer p-0 transition-all duration-300 group hover:border-ink dark:hover:border-dark-ink" id="theme-toggle" aria-label="Toggle theme">
       <span class="tt-thumb absolute top-[1px] left-[1px] w-[18px] h-[18px] rounded-full bg-ink dark:bg-white transition-transform duration-350 ease-[cubic-bezier(.2,.7,.2,1)] translate-x-0 dark:translate-x-[24px] group-hover:scale-105"></span>
     </button>
@@ -32,6 +39,28 @@
     const body = document.body;
     const cur = body.getAttribute("data-theme") || "light";
     const next = cur === "light" ? "dark" : "light";
-    body.setAttribute("data-theme", next);
+    
+    // Check if the browser supports View Transitions API
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        body.setAttribute("data-theme", next);
+      });
+    } else {
+      // Fallback for browsers that don't support the API
+      body.setAttribute("data-theme", next);
+    }
+  });
+
+  // About button event dispatcher
+  const aboutTrigger = document.getElementById('about-trigger');
+  aboutTrigger?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('toggle-about'));
+  });
+
+  // Listen for state changes from React to update button text
+  window.addEventListener('about-state-changed', (e: any) => {
+    if (aboutTrigger) {
+      aboutTrigger.textContent = e.detail.isOpen ? 'Close' : 'About';
+    }
   });
 </script>

@@ -19,11 +19,55 @@ const { title = "Portfolio" } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-bg dark:bg-dark-bg text-ink dark:text-dark-ink h-screen flex flex-col font-sans overflow-hidden transition-colors duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" data-theme="light" data-density="normal" data-numweight="thin">
+  <body class="bg-bg dark:bg-dark-bg text-ink dark:text-dark-ink h-[100dvh] flex flex-col font-sans overflow-hidden transition-colors duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]" data-theme="light">
+    <!-- Cinematic Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg dark:bg-dark-bg transition-colors duration-500">
+      <div class="flex flex-col items-center">
+        <div id="preloader-count" class="font-serif italic text-7xl lg:text-9xl font-bold tracking-tighter text-ink dark:text-dark-ink tabular-nums">00</div>
+        <div class="mt-4 text-[10px] tracking-[0.3em] uppercase text-muted dark:text-dark-muted font-bold opacity-50">Initializing Experience</div>
+      </div>
+    </div>
+
+    <!-- Global Noise Texture Layer (Highest Z to cover everything including preloader) -->
+    <div class="bg-noise fixed inset-0 z-[200] pointer-events-none opacity-[0.04] dark:opacity-[0.03] mix-blend-multiply dark:mix-blend-screen"></div>
+    
     <slot />
+
+    <script>
+      const preloader = document.getElementById('preloader');
+      const countEl = document.getElementById('preloader-count');
+      let count = 0;
+
+      function updateCount() {
+        if (count < 100) {
+          // Non-linear speed: fast at start, slower at the end for tension
+          const increment = count < 80 ? Math.floor(Math.random() * 3) + 1 : 1;
+          count = Math.min(count + increment, 100);
+          if (countEl) countEl.textContent = count.toString().padStart(2, '0');
+          
+          const delay = count > 90 ? Math.random() * 150 + 50 : Math.random() * 30 + 10;
+          setTimeout(updateCount, delay);
+        } else {
+          // Entrance sequence
+          setTimeout(() => {
+            if (preloader) {
+              preloader.classList.add('preloader-hidden');
+              // Signal React that it can now start its reveal animations
+              window.dispatchEvent(new CustomEvent('preloader-finished'));
+              
+              // Remove from DOM after animation
+              setTimeout(() => preloader.style.display = 'none', 1500);
+            }
+          }, 400);
+        }
+      }
+
+      // Start counting as soon as script runs
+      updateCount();
+    </script>
   </body>
 </html>
