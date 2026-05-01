@@ -57,6 +57,15 @@
     background-size: 200% 200%;
     animation: grainy-gradient 15s ease infinite;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes grainy-gradient {

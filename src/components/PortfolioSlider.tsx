@@ -123,7 +123,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
       onWheel={handleWheel}
     >
       {/* THE SECRET ABOUT LAYER (Z-Index 0 or 20 when open) */}
-      <div className={`absolute inset-0 flex flex-col items-center justify-start pt-[15vh] lg:pt-[20vh] px-6 lg:px-12 text-bg dark:text-ink pointer-events-none transition-all duration-500 ${isAboutOpen ? 'z-20 opacity-100' : 'z-0 opacity-0'}`}>
+      <div className={`absolute inset-0 flex flex-col items-center justify-start pt-[15vh] lg:pt-[20vh] px-6 lg:px-12 text-bg dark:text-ink transition-all duration-500 scrollbar-hide ${isAboutOpen ? 'z-20 opacity-100 pointer-events-auto overflow-y-auto' : 'z-0 opacity-0 pointer-events-none'}`}>
          {/* Grainy Gradient Background */}
          <div className="absolute inset-0 bg-noise animate-grainy-gradient opacity-10 dark:opacity-20 z-[-1]"></div>
          
@@ -163,11 +163,19 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
             syncAstroButton(false);
           }
         }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.2}
+        onDragEnd={(_, info) => {
+          if (isAboutOpen) return;
+          if (info.offset.x > 100) go(idx - 1);
+          else if (info.offset.x < -100) go(idx + 1);
+        }}
         className={`relative z-10 flex-1 flex flex-col min-h-0 bg-bg dark:bg-dark-bg shadow-[0_0_50px_rgba(0,0,0,0.3)] origin-top ${isAboutOpen ? 'cursor-pointer' : ''}`}
       >
-        <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
+        <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-y-auto lg:overflow-hidden scrollbar-hide ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
-           <section className="hero-left relative flex flex-col justify-center lg:justify-between h-full py-6 order-2 lg:order-1 overflow-hidden">
+           <section className="hero-left relative flex flex-col justify-center lg:justify-between h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
               <div className="index-stack relative h-[140px] lg:h-[240px] overflow-hidden hidden lg:block shrink-0">
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
