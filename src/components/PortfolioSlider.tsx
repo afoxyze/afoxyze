@@ -178,7 +178,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
         }}
         className={`relative z-10 flex-1 flex flex-col min-h-0 bg-bg dark:bg-dark-bg shadow-[0_0_50px_rgba(0,0,0,0.3)] origin-top transform-gpu will-change-transform ${isAboutOpen ? 'cursor-pointer' : ''}`}
       >
-        <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-y-auto lg:overflow-hidden scrollbar-hide ${isAboutOpen ? 'pointer-events-none' : ''}`}>
+        <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
            <section className="hero-left relative flex flex-col justify-center lg:justify-between h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
               <div className="index-stack relative h-[140px] lg:h-[240px] overflow-hidden hidden lg:block shrink-0">
@@ -333,14 +333,14 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
         </div>
 
         {/* BOTTOM RAIL */}
-        <div className={`rail-bar grid grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_auto_auto] items-center gap-4 lg:gap-8 px-6 lg:px-12 pt-6 pb-8 border-t border-line dark:border-dark-line transition-colors ${isAboutOpen ? 'pointer-events-none' : ''}`}>
-           <div className="rail-counter text-[28px] lg:text-[34px] leading-none tracking-[-0.04em] tabular-nums text-ink dark:text-dark-ink flex items-baseline gap-1.5 font-medium col-start-1">
+        <div className={`rail-bar flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8 px-6 lg:px-12 pt-6 pb-8 border-t border-line dark:border-dark-line transition-colors ${isAboutOpen ? 'pointer-events-none' : ''}`}>
+           <div className="rail-counter shrink-0 text-[28px] lg:text-[34px] leading-none tracking-[-0.04em] tabular-nums text-ink dark:text-dark-ink flex items-baseline gap-1.5 font-medium col-start-1">
              <span>{currentProject.n}</span>
              <span className="slash text-muted-2 dark:text-dark-muted-2 text-[20px] lg:text-[24px] font-light">/</span>
              <span className="total text-muted dark:text-dark-muted text-[20px] lg:text-[24px] font-normal">{String(projects.length).padStart(2, "0")}</span>
            </div>
 
-           <div className="rail-list hidden lg:flex items-center gap-0 overflow-hidden">
+           <div className="rail-list hidden lg:flex flex-1 items-center gap-0 overflow-hidden">
              {projects.map((p, i) => (
                <button 
                  key={p.n} 
@@ -363,7 +363,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
               <button 
                  onClick={() => go(idx - 1)} 
                  disabled={idx === 0}
-                 className="prev-btn hidden lg:flex items-center gap-[14px] py-2 pl-[14px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:-translate-x-[2px] group text-right disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0 ml-auto"
+                 className="prev-btn flex items-center gap-[14px] py-2 pl-[14px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:-translate-x-[2px] group text-right disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0 ml-auto lg:ml-0"
               >
                  <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:-translate-x-[3px] rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
                    <div className="nu-stack flex flex-col gap-0.5 items-end">
@@ -379,7 +379,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
               <button 
                  onClick={() => go(idx + 1)} 
                  disabled={idx === projects.length - 1}
-                 className="next-btn flex items-center gap-[14px] py-2 pl-[18px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:translate-x-[2px] group text-left col-span-2 lg:col-span-1 mt-2 lg:mt-0 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0"
+                 className="next-btn flex items-center gap-[14px] py-2 pl-[18px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:translate-x-[2px] group text-left mt-0 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0"
               >
                  <div className="nu-stack flex flex-col gap-0.5">
                    <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted font-medium">Next</span>
