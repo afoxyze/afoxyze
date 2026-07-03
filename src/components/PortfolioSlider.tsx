@@ -115,7 +115,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
   return (
     <div 
       ref={initEvents}
-      className="absolute inset-0 flex flex-col focus:outline-none overflow-hidden transition-colors duration-400 bg-ink dark:bg-bg" 
+      className="absolute inset-0 flex flex-col focus:outline-none overflow-hidden bg-ink dark:bg-bg" 
       tabIndex={0} 
       role="region"
       aria-label="Portfolio gallery"
@@ -281,7 +281,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     </a>
 
                     <div className="relative h-full p-2 lg:p-4 rounded-[14px] bg-card dark:bg-dark-card border border-line dark:border-dark-line shadow-sm flex items-center justify-center overflow-hidden">
-                      <div className="relative h-full aspect-[1280/900] @container rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg transition-colors dark:bg-gradient-to-b dark:from-[#0f0f0f] dark:to-[#1c1c1c]">
+                      <div className="relative h-full aspect-[1280/900] @container rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg dark:bg-gradient-to-b dark:from-[#0f0f0f] dark:to-[#1c1c1c]">
                         <div className="visual-fallback absolute inset-0 flex flex-col items-center justify-center gap-[14px] text-muted-2 dark:text-dark-muted-2">
                           <div className="glyph font-sans font-light text-[80px] lg:text-[130px] leading-[0.9] text-ink dark:text-dark-ink tracking-[-0.06em]">{currentProject.glyph}</div>
                           <div className="label text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-muted dark:text-dark-muted">Project Visual</div>
@@ -333,7 +333,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
         </div>
 
         {/* BOTTOM RAIL */}
-        <div className={`rail-bar flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8 px-6 lg:px-12 pt-6 pb-8 border-t border-line dark:border-dark-line transition-colors ${isAboutOpen ? 'pointer-events-none' : ''}`}>
+        <div className={`rail-bar flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8 px-6 lg:px-12 pt-6 pb-8 border-t border-line dark:border-dark-line ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            <div className="rail-counter shrink-0 text-[28px] lg:text-[34px] leading-none tracking-[-0.04em] tabular-nums text-ink dark:text-dark-ink flex items-baseline gap-1.5 font-medium col-start-1">
              <span>{currentProject.n}</span>
              <span className="slash text-muted-2 dark:text-dark-muted-2 text-[20px] lg:text-[24px] font-light">/</span>

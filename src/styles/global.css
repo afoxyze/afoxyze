@@ -36,6 +36,25 @@
 
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+/* When transitioning to light, old (dark) should be on top so it can shrink */
+:root.light-theme-transition::view-transition-old(root) {
+  z-index: 2;
+}
+:root.light-theme-transition::view-transition-new(root) {
+  z-index: 1;
+}
+
 @layer utilities {
   .preserve-3d {
     transform-style: preserve-3d;
