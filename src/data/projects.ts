@@ -14,20 +14,20 @@ export const PROJECTS = [
     year: "2025",
     stack: "Next · LLM · pasal.id",
     status: "Live",
-    image: TanyaKerjaImg.src
+    image: TanyaKerjaImg.src,
   },
   {
     n: "02",
     kicker: "OSINT · Investigation",
-    title: "Proyek \"Bagus\" Pemerintah",
-    desc: "Kumpulan Informasi Proyek \"Bagus\" Pemerintah dan Relasi ditiap Proyek \"Bagusnya\"",
+    title: 'Proyek "Bagusix" Pemerintah',
+    desc: 'Kumpulan informasi Proyek "Bagus" Pemerintah dan relasi ditiap proyek "Bagusnya"',
     url: "https://proyekbagus.afoxyze.dev",
     domain: "proyekbagus.afoxyze.dev",
     glyph: "K",
     year: "2025",
     stack: "Next · Graph · OSINT",
     status: "Live",
-    image: ProyekBagusImg.src
+    image: ProyekBagusImg.src,
   },
   {
     n: "03",
@@ -40,6 +40,6 @@ export const PROJECTS = [
     year: "2025",
     stack: "Next · Realtime",
     status: "Live",
-    image: MbgImg.src
-  }
+    image: MbgImg.src,
+  },
 ];
