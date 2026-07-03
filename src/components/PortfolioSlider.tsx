@@ -327,6 +327,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                         </Magnetic>
                       </div>
                     </div>
+                    </div>
                   </motion.div>
                 </AnimatePresence>
               </div>
