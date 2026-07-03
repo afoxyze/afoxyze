@@ -180,8 +180,8 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
       >
         <div className={`hero-section flex-1 flex flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 lg:items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
-           <section className="hero-left self-stretch flex-1 min-h-0 relative flex flex-col justify-start lg:pt-8 gap-6 lg:gap-10 py-6 order-2 lg:order-1 lg:overflow-hidden">
-              <div className="index-stack relative h-[100px] lg:h-[140px] overflow-hidden hidden lg:block shrink-0">
+           <section className="hero-left self-stretch flex-1 min-h-0 relative flex flex-col justify-start lg:pt-8 gap-6 py-6 order-2 lg:order-1 lg:overflow-hidden">
+              <div className="index-stack relative h-[100px] lg:h-[110px] overflow-hidden hidden lg:block shrink-0">
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
                     key={currentProject.n}
@@ -227,7 +227,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     </AnimatePresence>
                  </div>
 
-                 <div className="title-stack relative h-[48px] lg:h-[136px] overflow-hidden">
+                 <div className="title-stack relative h-auto shrink-0 overflow-hidden">
                     <AnimatePresence mode="wait" custom={direction}>
                        <motion.div
                          key={currentProject.title}
@@ -235,14 +235,14 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                          animate={{ y: "0%", opacity: 1 }}
                          exit={{ y: direction >= 0 ? "-100%" : "100%", opacity: 0 }}
                          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                         className="text-[36px] lg:text-[68px] leading-none tracking-[-0.04em] font-serif italic text-ink dark:text-dark-ink drop-shadow-sm font-bold truncate lg:whitespace-normal"
+                         className="text-[36px] lg:text-[68px] leading-none tracking-[-0.04em] font-serif italic text-ink dark:text-dark-ink drop-shadow-sm font-bold"
                        >
                          {currentProject.title}
                        </motion.div>
                     </AnimatePresence>
                  </div>
 
-                 <div className="desc-stack relative min-h-[80px] lg:min-h-[96px] max-h-[14vh] lg:max-h-[22vh] max-w-[460px] overflow-hidden flex flex-col">
+                 <div className="desc-stack relative flex-1 min-h-0 max-w-[460px] flex flex-col overflow-hidden">
                     <AnimatePresence mode="wait" custom={direction}>
                       <motion.div
                         key={currentProject.desc}
@@ -396,7 +396,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                  <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:-translate-x-[3px] rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
                    <div className="nu-stack flex flex-col gap-0.5 items-end">
                    <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted dark:text-dark-muted font-medium">Previous</span>
-                   <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink">
+                   <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[120px] lg:max-w-[150px]">
                      {idx === 0 ? "—" : projects[idx - 1].title}
                    </span>
                  </div>
@@ -411,7 +411,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
               >
                  <div className="nu-stack flex flex-col gap-0.5">
                    <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted font-medium">Next</span>
-                   <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink">
+                   <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[120px] lg:max-w-[150px]">
                      {idx === projects.length - 1 ? "—" : projects[idx + 1].title}
                    </span>
                  </div>
