@@ -268,46 +268,49 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     initial={{ x: "12%", rotateY: -8, scale: 0.92, opacity: 0 }}
                     animate={{ x: "0%", rotateY: 0, scale: 1, opacity: 1, zIndex: 3 }}
                     exit={{ x: "-12%", rotateY: 8, scale: 0.92, opacity: 0, zIndex: 1 }}
-                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-y-0 flex flex-col justify-center"
+                    className="absolute inset-y-0 flex flex-col items-center justify-center w-full px-2"
                   >
-                    <a 
-                      href={currentProject.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="absolute -top-4 lg:-top-6 left-1 text-[9px] lg:text-[10px] tracking-[0.18em] uppercase text-muted dark:text-dark-muted font-semibold hover:text-ink dark:hover:text-dark-ink transition-colors z-20 cursor-pointer"
-                    >
-                      {currentProject.domain}
-                    </a>
+                    {/* The precisely calculated wrapper to ensure aspect-video never exceeds parent height */}
+                    <div className="relative w-full max-w-[462px] lg:max-w-[782px] aspect-video">
+                      <a 
+                        href={currentProject.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="absolute -top-5 lg:-top-6 left-1 text-[9px] lg:text-[10px] tracking-[0.18em] uppercase text-muted dark:text-dark-muted font-semibold hover:text-ink dark:hover:text-dark-ink transition-colors z-20 cursor-pointer"
+                      >
+                        {currentProject.domain}
+                      </a>
 
-                    <div className="relative h-full p-2 lg:p-4 rounded-[14px] bg-card dark:bg-dark-card border border-line dark:border-dark-line shadow-sm flex items-center justify-center overflow-hidden">
-                      <div className="relative h-full aspect-[1280/900] @container rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg dark:bg-gradient-to-b dark:from-[#0f0f0f] dark:to-[#1c1c1c]">
-                        <div className="visual-fallback absolute inset-0 flex flex-col items-center justify-center gap-[14px] text-muted-2 dark:text-dark-muted-2">
-                          <div className="glyph font-sans font-light text-[80px] lg:text-[130px] leading-[0.9] text-ink dark:text-dark-ink tracking-[-0.06em]">{currentProject.glyph}</div>
-                          <div className="label text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-muted dark:text-dark-muted">Project Visual</div>
+                      {/* The Card */}
+                      <div className="relative w-full h-full p-2 lg:p-4 rounded-[14px] bg-card dark:bg-dark-card border border-line dark:border-dark-line shadow-sm flex items-center justify-center overflow-hidden">
+                        <div className="relative w-full h-full rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg">
+                          <div className="visual-fallback absolute inset-0 flex flex-col items-center justify-center gap-[14px] text-muted-2 dark:text-dark-muted-2">
+                            <div className="glyph font-sans font-light text-[80px] lg:text-[130px] leading-[0.9] text-ink dark:text-dark-ink tracking-[-0.06em]">{currentProject.glyph}</div>
+                            <div className="label text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-muted dark:text-dark-muted">Project Visual</div>
+                          </div>
+                          <motion.div 
+                            initial={{ clipPath: "inset(100% 0 0 0)" }}
+                            animate={{ clipPath: "inset(0% 0 0 0)" }}
+                            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+                            className="absolute inset-0 flex items-center justify-center transform-gpu"
+                          >
+                              <motion.img 
+                                key={currentProject.image}
+                                initial={{ scale: 1.15, filter: "brightness(1.4) saturate(0.6)" }}
+                                animate={{ scale: 1, filter: "none" }}
+                                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                                src={currentProject.image}
+                                alt={`${currentProject.title} screenshot`}
+                                className="w-full h-full object-cover transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
+                                fetchPriority="high"
+                                loading="eager"
+                              />
+                          </motion.div>
                         </div>
-                        <motion.div 
-                          initial={{ clipPath: "inset(100% 0 0 0)" }}
-                          animate={{ clipPath: "inset(0% 0 0 0)" }}
-                          transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                          className="absolute inset-0 flex items-center justify-center transform-gpu"
-                        >
-                            <motion.img 
-                              key={currentProject.image}
-                              initial={{ scale: 1.15, filter: "brightness(1.4) saturate(0.6)" }}
-                              animate={{ scale: 1, filter: "none" }}
-                              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                              src={currentProject.image}
-                              alt={`${currentProject.title} screenshot`}
-                              className="w-full h-full object-contain transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
-                              fetchPriority="high"
-                              loading="eager"
-                            />
-                        </motion.div>
                       </div>
 
-                      {/* 3D SATELLITE VISIT BUTTON */}
-                      <div className="absolute bottom-6 right-6 z-30 lg:bottom-8 lg:right-8">
+                      {/* 3D SATELLITE VISIT BUTTON (OPTION B: FLOATING OUTSIDE BELOW) */}
+                      <div className="absolute -bottom-6 lg:-bottom-7 right-2 lg:right-4 z-30">
                         <Magnetic strength={20}>
                           <a 
                             href={currentProject.url} 
