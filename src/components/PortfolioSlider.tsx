@@ -281,7 +281,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     </a>
 
                     <div className="relative h-full p-2 lg:p-4 rounded-[14px] bg-card dark:bg-dark-card border border-line dark:border-dark-line shadow-sm flex items-center justify-center overflow-hidden">
-                      <div className="relative h-full aspect-video @container rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg dark:bg-gradient-to-b dark:from-[#0f0f0f] dark:to-[#1c1c1c]">
+                      <div className="relative w-full aspect-video @container rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg dark:bg-gradient-to-b dark:from-[#0f0f0f] dark:to-[#1c1c1c]">
                         <div className="visual-fallback absolute inset-0 flex flex-col items-center justify-center gap-[14px] text-muted-2 dark:text-dark-muted-2">
                           <div className="glyph font-sans font-light text-[80px] lg:text-[130px] leading-[0.9] text-ink dark:text-dark-ink tracking-[-0.06em]">{currentProject.glyph}</div>
                           <div className="label text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-muted dark:text-dark-muted">Project Visual</div>
