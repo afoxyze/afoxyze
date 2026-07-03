@@ -387,37 +387,81 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
              ))}
            </div>
 
-           <Magnetic>
-              <button 
-                 onClick={() => go(idx - 1)} 
-                 disabled={idx === 0}
-                 className="prev-btn flex items-center gap-[14px] py-2 pl-[14px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:-translate-x-[2px] group text-right disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0 ml-auto lg:ml-0"
-              >
-                 <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:-translate-x-[3px] rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
-                   <div className="nu-stack flex flex-col gap-0.5 items-end">
-                   <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted dark:text-dark-muted font-medium">Previous</span>
-                   <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[120px] lg:max-w-[150px]">
-                     {idx === 0 ? "—" : projects[idx - 1].title}
-                   </span>
-                 </div>
-              </button>
-           </Magnetic>
+           {/* PREVIOUS BUTTON */}
+           <div className="ml-auto lg:ml-0">
+             {/* DESKTOP */}
+             <div className="hidden lg:block">
+               <Magnetic>
+                  <button 
+                     onClick={() => go(idx - 1)} 
+                     disabled={idx === 0}
+                     className="prev-btn flex items-center gap-[14px] py-2 pl-[14px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:-translate-x-[2px] group text-right disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0"
+                  >
+                     <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:-translate-x-[3px] rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
+                       <div className="nu-stack flex flex-col gap-0.5 items-end">
+                       <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted dark:text-dark-muted font-medium">Previous</span>
+                       <span className="nu-name text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[150px]">
+                         {idx === 0 ? "—" : projects[idx - 1].title}
+                       </span>
+                     </div>
+                  </button>
+               </Magnetic>
+             </div>
+             {/* MOBILE */}
+             <div className="block lg:hidden">
+                <button 
+                   onClick={() => go(idx - 1)} 
+                   disabled={idx === 0}
+                   className="prev-btn flex items-center gap-[14px] py-2 pl-[14px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all active:scale-95 group text-right disabled:opacity-25 disabled:cursor-not-allowed"
+                >
+                   <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M9 6l6 6-6 6"/></svg>
+                     <div className="nu-stack flex flex-col gap-0.5 items-end">
+                     <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted dark:text-dark-muted font-medium">Previous</span>
+                     <span className="nu-name text-[12px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[120px]">
+                       {idx === 0 ? "—" : projects[idx - 1].shortName}
+                     </span>
+                   </div>
+                </button>
+             </div>
+           </div>
 
-           <Magnetic>
-              <button 
-                 onClick={() => go(idx + 1)} 
-                 disabled={idx === projects.length - 1}
-                 className="next-btn flex items-center gap-[14px] py-2 pl-[18px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:translate-x-[2px] group text-left mt-0 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0"
-              >
-                 <div className="nu-stack flex flex-col gap-0.5">
-                   <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted font-medium">Next</span>
-                   <span className="nu-name text-[12px] lg:text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[120px] lg:max-w-[150px]">
-                     {idx === projects.length - 1 ? "—" : projects[idx + 1].title}
-                   </span>
-                 </div>
-                 <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:translate-x-[3px] ml-auto lg:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
-              </button>
-           </Magnetic>
+           {/* NEXT BUTTON */}
+           <div>
+             {/* DESKTOP */}
+             <div className="hidden lg:block">
+               <Magnetic>
+                  <button 
+                     onClick={() => go(idx + 1)} 
+                     disabled={idx === projects.length - 1}
+                     className="next-btn flex items-center gap-[14px] py-2 pl-[18px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all hover:border-ink dark:hover:border-dark-ink hover:translate-x-[2px] group text-left mt-0 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:border-line disabled:hover:translate-x-0"
+                  >
+                     <div className="nu-stack flex flex-col gap-0.5">
+                       <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted font-medium">Next</span>
+                       <span className="nu-name text-[13px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[150px]">
+                         {idx === projects.length - 1 ? "—" : projects[idx + 1].title}
+                       </span>
+                     </div>
+                     <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink transition-transform group-hover:translate-x-[3px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                  </button>
+               </Magnetic>
+             </div>
+             {/* MOBILE */}
+             <div className="block lg:hidden">
+                <button 
+                   onClick={() => go(idx + 1)} 
+                   disabled={idx === projects.length - 1}
+                   className="next-btn flex items-center gap-[14px] py-2 pl-[18px] pr-4 rounded-full border border-line dark:border-dark-line bg-bg dark:bg-dark-bg cursor-pointer transition-all active:scale-95 group text-left mt-0 disabled:opacity-25 disabled:cursor-not-allowed"
+                >
+                   <div className="nu-stack flex flex-col gap-0.5">
+                     <span className="nu-label text-[10px] tracking-[0.2em] uppercase text-muted font-medium">Next</span>
+                     <span className="nu-name text-[12px] font-medium tracking-[-0.015em] text-ink dark:text-dark-ink truncate max-w-[120px]">
+                       {idx === projects.length - 1 ? "—" : projects[idx + 1].shortName}
+                     </span>
+                   </div>
+                   <svg className="nu-arrow w-[14px] h-[14px] text-ink dark:text-dark-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </button>
+             </div>
+           </div>
         </div>
       </motion.div>
     </div>
