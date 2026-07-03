@@ -261,14 +261,15 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
 
            {/* RIGHT HERO - VISUALS */}
            <section className="hero-right relative h-[260px] lg:h-[440px] w-full flex justify-center items-center perspective-[1400px] order-1 lg:order-2 mt-4 lg:mt-0">
-              <div className="hero-right-inner relative h-full preserve-3d transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] flex items-center justify-center">
+              <div className="hero-right-inner relative w-full h-full preserve-3d transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] flex items-center justify-center">
                 <AnimatePresence mode="popLayout">
                   <motion.div
                     key={currentProject.title}
                     initial={{ x: "12%", rotateY: -8, scale: 0.92, opacity: 0 }}
                     animate={{ x: "0%", rotateY: 0, scale: 1, opacity: 1, zIndex: 3 }}
                     exit={{ x: "-12%", rotateY: 8, scale: 0.92, opacity: 0, zIndex: 1 }}
-                    className="absolute inset-y-0 flex flex-col items-center justify-center w-full px-2"
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 flex flex-col items-center justify-center px-2"
                   >
                     {/* The precisely calculated wrapper to ensure aspect-video never exceeds parent height */}
                     <div className="relative w-full max-w-[462px] lg:max-w-[782px] aspect-video">
