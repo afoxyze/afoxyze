@@ -80,6 +80,27 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-muted-2) transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-line);
+    border-radius: 10px;
+  }
+  [data-theme="dark"] .custom-scrollbar {
+    scrollbar-color: var(--color-dark-muted-2) transparent;
+  }
+  [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-line);
+  }
 }
 
 @keyframes grainy-gradient {

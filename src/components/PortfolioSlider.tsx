@@ -180,8 +180,8 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
       >
         <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
-           <section className="hero-left relative flex flex-col justify-center lg:justify-between h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
-              <div className="index-stack relative h-[140px] lg:h-[240px] overflow-hidden hidden lg:block shrink-0">
+           <section className="hero-left relative flex flex-col justify-center gap-6 lg:gap-10 h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
+              <div className="index-stack relative h-[100px] lg:h-[140px] overflow-hidden hidden lg:block shrink-0">
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
                     key={currentProject.n}
@@ -189,7 +189,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     animate={{ y: "0%", opacity: 1 }}
                     exit={{ y: direction >= 0 ? "-110%" : "110%", opacity: 0 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="index-num absolute top-0 left-0 text-[140px] lg:text-[180px] leading-[0.85] tracking-[-0.06em] text-ink dark:text-dark-ink flex gap-0 font-serif italic font-bold"
+                    className="index-num absolute top-0 left-0 text-[100px] lg:text-[140px] leading-[0.85] tracking-[-0.06em] text-ink dark:text-dark-ink flex gap-0 font-serif italic font-bold"
                   >
                     {currentProject.n.split("").map((d, i) => (
                       <motion.span 
@@ -242,7 +242,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     </AnimatePresence>
                  </div>
 
-                 <div className="desc-stack relative min-h-[80px] lg:min-h-[96px] max-w-[460px] overflow-hidden">
+                 <div className="desc-stack relative min-h-[80px] lg:min-h-[96px] max-h-[14vh] lg:max-h-[22vh] max-w-[460px] overflow-hidden flex flex-col">
                     <AnimatePresence mode="wait" custom={direction}>
                       <motion.div
                         key={currentProject.desc}
@@ -250,8 +250,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: direction >= 0 ? "-80%" : "80%", opacity: 0 }}
                         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                        className="project-desc text-sm lg:text-base leading-[1.6] text-ink-2 dark:text-dark-ink-2 text-pretty overflow-y-auto max-h-[14vh] lg:max-h-[18vh] pr-3 overscroll-contain"
-                        style={{ scrollbarWidth: 'thin' }}
+                        className="project-desc text-sm lg:text-base leading-[1.6] text-ink-2 dark:text-dark-ink-2 text-pretty overflow-y-auto pr-3 overscroll-contain flex-1 custom-scrollbar"
                       >
                         {currentProject.desc}
                       </motion.div>
