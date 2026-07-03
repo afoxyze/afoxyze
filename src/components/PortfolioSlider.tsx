@@ -299,7 +299,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                               src={currentProject.image}
                               alt={`${currentProject.title} screenshot`}
-                              className="w-full h-full object-cover transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
+                              className="w-full h-full object-contain transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
                               fetchPriority="high"
                               loading="eager"
                             />
