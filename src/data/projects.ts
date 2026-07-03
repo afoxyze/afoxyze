@@ -19,7 +19,7 @@ export const PROJECTS = [
   {
     n: "02",
     kicker: "OSINT · Investigation",
-    title: 'Proyek "Bagusix" Pemerintah',
+    title: 'Proyek "Bagus" Pemerintah',
     desc: 'Kumpulan informasi Proyek "Bagus" Pemerintah dan relasi ditiap proyek "Bagusnya"',
     url: "https://proyekbagus.afoxyze.dev",
     domain: "proyekbagus.afoxyze.dev",
