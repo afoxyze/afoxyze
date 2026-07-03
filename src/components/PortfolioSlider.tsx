@@ -189,7 +189,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     animate={{ y: "0%", opacity: 1 }}
                     exit={{ y: direction >= 0 ? "-110%" : "110%", opacity: 0 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="index-num absolute top-0 left-0 text-[140px] lg:text-[240px] leading-[0.85] tracking-[-0.06em] text-ink dark:text-dark-ink flex gap-0 font-serif italic font-bold"
+                    className="index-num absolute top-0 left-0 text-[140px] lg:text-[180px] leading-[0.85] tracking-[-0.06em] text-ink dark:text-dark-ink flex gap-0 font-serif italic font-bold"
                   >
                     {currentProject.n.split("").map((d, i) => (
                       <motion.span 
@@ -250,7 +250,8 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: direction >= 0 ? "-80%" : "80%", opacity: 0 }}
                         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                        className="project-desc text-sm lg:text-base leading-[1.6] text-ink-2 dark:text-dark-ink-2 text-pretty"
+                        className="project-desc text-sm lg:text-base leading-[1.6] text-ink-2 dark:text-dark-ink-2 text-pretty overflow-y-auto max-h-[14vh] lg:max-h-[18vh] pr-3 overscroll-contain"
+                        style={{ scrollbarWidth: 'thin' }}
                       >
                         {currentProject.desc}
                       </motion.div>
@@ -311,7 +312,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                       </div>
 
                       {/* 3D SATELLITE VISIT BUTTON (OPTION B: FLOATING OUTSIDE BELOW) */}
-                      <div className="absolute -bottom-6 lg:-bottom-7 right-2 lg:right-4 z-30">
+                      <div className="absolute -bottom-14 lg:-bottom-16 right-2 lg:right-4 z-30">
                         <Magnetic strength={20}>
                           <a 
                             href={currentProject.url} 
