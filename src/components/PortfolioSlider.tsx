@@ -30,6 +30,19 @@ function Magnetic({ children, strength = 12 }: { children: React.ReactNode, stre
 }
 
 /**
+ * Helper to highlight specific keywords in red while keeping the rest normal.
+ */
+function highlightKeywords(text: string) {
+  const parts = text.split(/(Bagusnya|Bagus)/g);
+  return parts.map((part, i) => {
+    if (part === "Bagus" || part === "Bagusnya") {
+      return <span key={i} className="text-red-600 dark:text-red-500">{part}</span>;
+    }
+    return part;
+  });
+}
+
+/**
  * Word-by-word text reveal component for a cinematic entrance.
  */
 function StaggeredText({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) {
@@ -237,7 +250,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                          className="text-[36px] lg:text-[68px] leading-none tracking-[-0.04em] font-serif italic text-ink dark:text-dark-ink drop-shadow-sm font-bold"
                        >
-                         {currentProject.title}
+                         {highlightKeywords(currentProject.title)}
                        </motion.div>
                     </AnimatePresence>
                  </div>
@@ -252,7 +265,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                         className="project-desc text-sm lg:text-base leading-[1.6] text-ink-2 dark:text-dark-ink-2 text-pretty overflow-y-auto pr-3 overscroll-contain flex-1 custom-scrollbar"
                       >
-                        {currentProject.desc}
+                        {highlightKeywords(currentProject.desc)}
                       </motion.div>
                     </AnimatePresence>
                  </div>
