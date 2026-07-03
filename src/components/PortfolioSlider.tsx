@@ -260,8 +260,8 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
            </section>
 
            {/* RIGHT HERO - VISUALS */}
-           <section className="hero-right relative w-full flex justify-center items-center perspective-[1400px] order-1 lg:order-2 mt-4 lg:mt-0 lg:h-[440px]">
-              <div className="hero-right-inner relative w-full h-full preserve-3d transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] flex items-center justify-center">
+           <section className="hero-right relative h-[260px] lg:h-[440px] w-full flex justify-center items-center perspective-[1400px] order-1 lg:order-2 mt-4 lg:mt-0">
+              <div className="hero-right-inner relative h-full preserve-3d transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] flex items-center justify-center">
                 <AnimatePresence mode="popLayout">
                   <motion.div
                     key={currentProject.title}
@@ -269,20 +269,19 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     animate={{ x: "0%", rotateY: 0, scale: 1, opacity: 1, zIndex: 3 }}
                     exit={{ x: "-12%", rotateY: 8, scale: 0.92, opacity: 0, zIndex: 1 }}
                     transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 flex flex-col items-center justify-center"
+                    className="absolute inset-y-0 flex flex-col justify-center"
                   >
-                    <div className="relative w-full max-w-[90vw] lg:max-w-[700px] aspect-video">
-                      <a 
-                        href={currentProject.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="absolute -top-6 left-1 text-[9px] lg:text-[10px] tracking-[0.18em] uppercase text-muted dark:text-dark-muted font-semibold hover:text-ink dark:hover:text-dark-ink transition-colors z-20 cursor-pointer"
-                      >
-                        {currentProject.domain}
-                      </a>
+                    <a 
+                      href={currentProject.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="absolute -top-4 lg:-top-6 left-1 text-[9px] lg:text-[10px] tracking-[0.18em] uppercase text-muted dark:text-dark-muted font-semibold hover:text-ink dark:hover:text-dark-ink transition-colors z-20 cursor-pointer"
+                    >
+                      {currentProject.domain}
+                    </a>
 
-                      <div className="relative w-full h-full p-2 lg:p-4 rounded-[14px] bg-card dark:bg-dark-card border border-line dark:border-dark-line shadow-sm overflow-hidden">
-                        <div className="relative w-full h-full rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg">
+                    <div className="relative h-full p-2 lg:p-4 rounded-[14px] bg-card dark:bg-dark-card border border-line dark:border-dark-line shadow-sm flex items-center justify-center overflow-hidden">
+                      <div className="relative h-full aspect-[1280/900] @container rounded-[6px] overflow-hidden bg-bg dark:bg-dark-bg dark:bg-gradient-to-b dark:from-[#0f0f0f] dark:to-[#1c1c1c]">
                         <div className="visual-fallback absolute inset-0 flex flex-col items-center justify-center gap-[14px] text-muted-2 dark:text-dark-muted-2">
                           <div className="glyph font-sans font-light text-[80px] lg:text-[130px] leading-[0.9] text-ink dark:text-dark-ink tracking-[-0.06em]">{currentProject.glyph}</div>
                           <div className="label text-[10px] lg:text-[11px] uppercase tracking-[0.18em] text-muted dark:text-dark-muted">Project Visual</div>
@@ -300,7 +299,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                               src={currentProject.image}
                               alt={`${currentProject.title} screenshot`}
-                              className="w-full h-full object-cover transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
+                              className="w-full h-full object-contain transition-all dark:brightness-90 dark:saturate-90 transform-gpu will-change-transform"
                               fetchPriority="high"
                               loading="eager"
                             />
@@ -326,7 +325,6 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                           </a>
                         </Magnetic>
                       </div>
-                    </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
