@@ -227,18 +227,18 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     </AnimatePresence>
                  </div>
 
-                 <div className="title-stack relative min-h-[48px] lg:min-h-[88px] overflow-hidden">
+                 <div className="title-stack relative h-[48px] lg:h-[136px] overflow-hidden">
                     <AnimatePresence mode="wait" custom={direction}>
-                      <motion.div
-                        key={currentProject.title}
-                        initial={{ y: direction >= 0 ? "100%" : "-100%", opacity: 0 }}
-                        animate={{ y: "0%", opacity: 1 }}
-                        exit={{ y: direction >= 0 ? "-110%" : "110%", opacity: 0 }}
-                        transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                        className="project-name text-[36px] lg:text-[68px] font-medium leading-none tracking-[-0.04em] text-balance text-ink dark:text-dark-ink"
-                      >
-                        {currentProject.title}
-                      </motion.div>
+                       <motion.div
+                         key={currentProject.title}
+                         initial={{ y: direction >= 0 ? "100%" : "-100%", opacity: 0 }}
+                         animate={{ y: "0%", opacity: 1 }}
+                         exit={{ y: direction >= 0 ? "-100%" : "100%", opacity: 0 }}
+                         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+                         className="text-[36px] lg:text-[68px] leading-none tracking-[-0.04em] font-serif italic text-ink dark:text-dark-ink drop-shadow-sm font-bold truncate lg:whitespace-normal"
+                       >
+                         {currentProject.title}
+                       </motion.div>
                     </AnimatePresence>
                  </div>
 
@@ -262,6 +262,49 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
            {/* RIGHT HERO - VISUALS */}
            <section className="hero-right shrink-0 relative h-[260px] lg:h-[440px] w-full flex justify-center items-center perspective-[1400px] order-1 lg:order-2 mt-4 lg:mt-0">
               <div className="hero-right-inner relative w-full h-full preserve-3d transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] flex items-center justify-center">
+                
+                {/* STATIC WRAPPER FOR VISIT BUTTON (OUTSIDE ANIMATION) */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-2 pointer-events-none z-40">
+                  <div className="relative w-full max-w-[462px] lg:max-w-[782px] aspect-video">
+                      <div className="absolute -bottom-10 lg:-bottom-12 right-2 lg:right-4 z-30 pointer-events-auto">
+                        <div className="hidden lg:block">
+                          <Magnetic strength={20}>
+                            <a 
+                              href={currentProject.url} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="group relative flex items-center gap-3 bg-ink dark:bg-bg text-bg dark:text-ink px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all hover:scale-105 border border-line/20 dark:border-dark-line/20 shadow-xl"
+                            >
+                              <div className="relative h-[1.2em] overflow-hidden">
+                                <div className="flex flex-col items-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2">
+                                  <span className="h-[1.2em] flex items-center justify-center">Visit</span>
+                                  <span className="h-[1.2em] flex items-center justify-center">Launch</span>
+                                </div>
+                              </div>
+                              <svg className="w-3 h-3 transition-transform duration-500 group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                            </a>
+                          </Magnetic>
+                        </div>
+                        <div className="block lg:hidden">
+                            <a 
+                              href={currentProject.url} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="group relative flex items-center gap-3 bg-ink dark:bg-bg text-bg dark:text-ink px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all active:scale-95 border border-line/20 dark:border-dark-line/20 shadow-xl"
+                            >
+                              <div className="relative h-[1.2em] overflow-hidden">
+                                <div className="flex flex-col items-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-active:-translate-y-1/2">
+                                  <span className="h-[1.2em] flex items-center justify-center">Visit</span>
+                                  <span className="h-[1.2em] flex items-center justify-center">Launch</span>
+                                </div>
+                              </div>
+                              <svg className="w-3 h-3 transition-transform duration-500 group-active:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                            </a>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
                 <AnimatePresence mode="popLayout">
                   <motion.div
                     key={currentProject.title}
@@ -310,26 +353,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                         </div>
                       </div>
 
-                      {/* 3D SATELLITE VISIT BUTTON (OPTION B: FLOATING OUTSIDE BELOW) */}
-                      <div className="absolute -bottom-10 lg:-bottom-12 right-2 lg:right-4 z-30">
-                        <Magnetic strength={20}>
-                          <a 
-                            href={currentProject.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="group relative flex items-center gap-3 bg-ink dark:bg-bg text-bg dark:text-ink px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all hover:scale-105 border border-line/20 dark:border-dark-line/20 shadow-xl"
-                          >
-                            <div className="relative h-[1.2em] overflow-hidden">
-                              <div className="flex flex-col items-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2">
-                                <span className="h-[1.2em] flex items-center justify-center">Visit</span>
-                                <span className="h-[1.2em] flex items-center justify-center">Launch</span>
-                              </div>
-                            </div>
-                            <svg className="w-3 h-3 transition-transform duration-500 group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
-                          </a>
-                        </Magnetic>
                       </div>
-                    </div>
                   </motion.div>
                 </AnimatePresence>
               </div>
