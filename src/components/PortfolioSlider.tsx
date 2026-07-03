@@ -189,7 +189,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     animate={{ y: "0%", opacity: 1 }}
                     exit={{ y: direction >= 0 ? "-110%" : "110%", opacity: 0 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="index-num absolute top-0 left-0 text-[100px] lg:text-[140px] leading-[0.85] tracking-[-0.06em] text-ink dark:text-dark-ink flex gap-0 font-serif italic font-bold"
+                    className="index-num absolute top-0 left-0 text-[100px] lg:text-[140px] leading-[0.85] tracking-[-0.06em] text-ink dark:text-dark-ink flex items-baseline gap-0 font-serif italic font-bold tabular-nums lining-nums"
                   >
                     {currentProject.n.split("").map((d, i) => (
                       <motion.span 
@@ -311,7 +311,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                       </div>
 
                       {/* 3D SATELLITE VISIT BUTTON (OPTION B: FLOATING OUTSIDE BELOW) */}
-                      <div className="absolute -bottom-14 lg:-bottom-16 right-2 lg:right-4 z-30">
+                      <div className="absolute -bottom-10 lg:-bottom-12 right-2 lg:right-4 z-30">
                         <Magnetic strength={20}>
                           <a 
                             href={currentProject.url} 
