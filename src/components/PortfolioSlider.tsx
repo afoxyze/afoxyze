@@ -227,7 +227,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                     </AnimatePresence>
                  </div>
 
-                 <div className="title-stack relative h-[48px] lg:h-[88px] overflow-hidden">
+                 <div className="title-stack relative min-h-[48px] lg:min-h-[88px] overflow-hidden">
                     <AnimatePresence mode="wait" custom={direction}>
                       <motion.div
                         key={currentProject.title}
@@ -235,7 +235,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: direction >= 0 ? "-110%" : "110%", opacity: 0 }}
                         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                        className="project-name text-[36px] lg:text-[68px] font-medium leading-none tracking-[-0.04em] whitespace-nowrap text-ink dark:text-dark-ink"
+                        className="project-name text-[36px] lg:text-[68px] font-medium leading-none tracking-[-0.04em] text-balance text-ink dark:text-dark-ink"
                       >
                         {currentProject.title}
                       </motion.div>
