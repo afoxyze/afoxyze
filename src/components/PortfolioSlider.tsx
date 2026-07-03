@@ -180,7 +180,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
       >
         <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
-           <section className="hero-left relative flex flex-col justify-center gap-6 lg:gap-10 h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
+           <section className="hero-left relative flex flex-col justify-start lg:pt-8 gap-6 lg:gap-10 h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
               <div className="index-stack relative h-[100px] lg:h-[140px] overflow-hidden hidden lg:block shrink-0">
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
