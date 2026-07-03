@@ -21,7 +21,7 @@ export const PROJECTS = [
     n: "02",
     kicker: "OSINT · Investigation",
     title: 'Proyek "Bagus" Pemerintah',
-    shortName: "pbp.id",
+    shortName: "PBP.ID",
     desc: 'Kumpulan informasi Proyek "Bagus" Pemerintah dan relasi ditiap proyek "Bagusnya"',
     url: "https://proyekbagus.afoxyze.dev",
     domain: "proyekbagus.afoxyze.dev",
