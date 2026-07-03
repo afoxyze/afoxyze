@@ -178,9 +178,9 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
         }}
         className={`relative z-10 flex-1 flex flex-col min-h-0 bg-bg dark:bg-dark-bg shadow-[0_0_50px_rgba(0,0,0,0.3)] origin-top transform-gpu will-change-transform ${isAboutOpen ? 'cursor-pointer' : ''}`}
       >
-        <div className={`hero-section flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
+        <div className={`hero-section flex-1 flex flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 lg:gap-16 lg:items-center px-6 lg:px-12 pb-6 min-h-0 overflow-hidden ${isAboutOpen ? 'pointer-events-none' : ''}`}>
            {/* LEFT HERO */}
-           <section className="hero-left self-stretch relative flex flex-col justify-start lg:pt-8 gap-6 lg:gap-10 h-full py-6 order-2 lg:order-1 lg:overflow-hidden">
+           <section className="hero-left self-stretch flex-1 min-h-0 relative flex flex-col justify-start lg:pt-8 gap-6 lg:gap-10 py-6 order-2 lg:order-1 lg:overflow-hidden">
               <div className="index-stack relative h-[100px] lg:h-[140px] overflow-hidden hidden lg:block shrink-0">
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
@@ -260,7 +260,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
            </section>
 
            {/* RIGHT HERO - VISUALS */}
-           <section className="hero-right relative h-[260px] lg:h-[440px] w-full flex justify-center items-center perspective-[1400px] order-1 lg:order-2 mt-4 lg:mt-0">
+           <section className="hero-right shrink-0 relative h-[260px] lg:h-[440px] w-full flex justify-center items-center perspective-[1400px] order-1 lg:order-2 mt-4 lg:mt-0">
               <div className="hero-right-inner relative w-full h-full preserve-3d transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] flex items-center justify-center">
                 <AnimatePresence mode="popLayout">
                   <motion.div
@@ -338,7 +338,7 @@ export default function PortfolioSlider({ projects }: { projects: typeof PROJECT
 
         {/* BOTTOM RAIL */}
         <div className={`rail-bar flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8 px-6 lg:px-12 pt-6 pb-8 border-t border-line dark:border-dark-line ${isAboutOpen ? 'pointer-events-none' : ''}`}>
-           <div className="rail-counter shrink-0 text-[28px] lg:text-[34px] leading-none tracking-[-0.04em] tabular-nums text-ink dark:text-dark-ink flex items-baseline gap-1.5 font-medium col-start-1">
+           <div className="rail-counter shrink-0 text-[28px] lg:text-[34px] leading-none tracking-[-0.04em] tabular-nums lining-nums text-ink dark:text-dark-ink flex items-baseline gap-1.5 font-medium col-start-1">
              <span>{currentProject.n}</span>
              <span className="slash text-muted-2 dark:text-dark-muted-2 text-[20px] lg:text-[24px] font-light">/</span>
              <span className="total text-muted dark:text-dark-muted text-[20px] lg:text-[24px] font-normal">{String(projects.length).padStart(2, "0")}</span>
